@@ -1,0 +1,7 @@
+{
+  "name": "Appsesor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
