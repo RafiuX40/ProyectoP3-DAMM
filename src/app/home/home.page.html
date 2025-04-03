@@ -1,20 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Tutores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Buscar Tutores</h1>
+    </header>
+    
+    <main>
+        <section id="search-section">
+            <input type="text" id="search-materia" placeholder="Buscar por materia">
+            <input type="text" id="search-grado" placeholder="Buscar por grado">
+            <button id="search-button">Buscar</button>
+        </section>
+        
+        <section id="tutors-list">
+            <!-- Aquí se mostrarán los tutores disponibles -->
+        </section>
+    </main>
+</body>
+</html>
