@@ -48,7 +48,7 @@ async onSubmit() {
  /*
  validateEmail(email: string): boolean {
    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}$/;
-   return emailPattern.test(email); // Retorna true si el correo es válido
+   return emailPattern.test(email);
  }
 */
 
