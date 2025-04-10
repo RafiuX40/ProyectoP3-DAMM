@@ -28,6 +28,6 @@ export const routes: Routes = [
   },
   {
     path: 'user',
-    loadComponent: () => import('./pages/user/user.page').then( m => m.UserPage)
+    loadComponent: () => import('./pages/user/user.page').then( m => m.UsuarioPropioPage)
   },
 ];

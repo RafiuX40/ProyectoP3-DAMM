@@ -1,20 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { UserService } from '../../services/user-info.service';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.page.html',
-  styleUrls: ['./user.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  selector: 'app-usuario-propio',
+  templateUrl: 'user.page.html',
+  styleUrls: ['user-propio.page.scss'],
 })
-export class UserPage implements OnInit {
+export class UsuarioPropioPage {
+  user: any = {
+    name: '',
+    email: '',
+    grado: '',
+    materiasQueDomina: '',
+    materiasQueNecesita: '',
+    disponibilidad: ''
+  };
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private alertController: AlertController,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.userService.getCurrentUser().subscribe((userData) => {
+      if (userData) {
+        this.user = userData;
+      } else {
+        this.showAlert('Error', 'No se pudo cargar el perfil.');
+      }
+    });
   }
 
+  async updateProfile() {
+    try {
+      await this.userService.updateUserProfile(this.user.id, this.user);
+      this.showAlert('Éxito', 'Perfil actualizado con éxito.');
+    } catch (error) {
+      this.showAlert('Error', 'Hubo un problema al actualizar el perfil.');
+    }
+  }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
 }
