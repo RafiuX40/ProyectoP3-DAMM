@@ -5,7 +5,7 @@ import { initializeApp } from "firebase/app";
 
 export const environment = {
   production: false,
-<<<<<<< Updated upstream
+
   firebaseConfig:{
   apiKey: "AIzaSyCb2dAo7aVValu6lAVB-YjKufQwOaHWrFI",
   authDomain: "proyectop3-damm.firebaseapp.com",
@@ -13,15 +13,6 @@ export const environment = {
   storageBucket: "proyectop3-damm.firebasestorage.app",
   messagingSenderId: "533012786408",
   appId: "1:533012786408:web:32d9298d93ad9fd4d3ed5d"
-=======
-  firebaseConfig: {
-    apiKey: "AIzaSyCb2dAo7aVValu6lAVB-YjKufQwOaHWrFI",
-    authDomain: "proyectop3-damm.firebaseapp.com",
-    projectId: "proyectop3-damm",
-    storageBucket: "proyectop3-damm.firebasestorage.app",
-    messagingSenderId: "533012786408",
-    appId: "1:533012786408:web:32d9298d93ad9fd4d3ed5d"
->>>>>>> Stashed changes
   }
 };
 

@@ -1,3 +1,4 @@
+  /*
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user-info.service';
 import { Router } from '@angular/router';
@@ -9,6 +10,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['user-propio.page.scss'],
 })
 export class UsuarioPropioPage {
+
   user: any = {
     name: '',
     email: '',
@@ -51,4 +53,6 @@ export class UsuarioPropioPage {
     });
     await alert.present();
   }
+    
 }
+  */

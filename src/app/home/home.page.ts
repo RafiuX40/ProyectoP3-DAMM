@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,5 +11,12 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class HomePage {
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
+
+
+
+  logout(){
+    this.authService.logout();
+    this.router.navigateByUrl("login");
+    }
 }

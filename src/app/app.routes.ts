@@ -26,8 +26,10 @@ export const routes: Routes = [
     path: 'users-publics',
     loadComponent: () => import('./pages/users-publics/users-publics.page').then( m => m.UsersPublicsPage)
   },
+  /*
   {
-    path: 'user',
-    loadComponent: () => import('./pages/user/user.page').then( m => m.UsuarioPropioPage)
+    //path: 'user',
+    //loadComponent: () => import('./pages/user/user.page').then( m => m.UsuarioPropioPage)
   },
+  */
 ];
