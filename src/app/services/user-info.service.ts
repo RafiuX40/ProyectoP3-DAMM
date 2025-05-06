@@ -29,4 +29,22 @@ export class UserService {
       });
     });
   }
+  async rateTutor(tutorId: string, rating: number): Promise<void> {
+    const tutorRef = doc(this.firestore, `users/${tutorId}`);
+    
+    const currentData = await docData(tutorRef).toPromise();
+
+    const currentAverage = currentData?.averageRating || 0;
+    const currentCount = currentData?.ratingCount || 0;
+
+    const newCount = currentCount + 1;
+    const newAverage = ((currentAverage * currentCount) + rating) / newCount;
+
+    return updateDoc(tutorRef, {
+      averageRating: newAverage,
+      ratingCount: newCount
+    });
+  }
 }
+
+
