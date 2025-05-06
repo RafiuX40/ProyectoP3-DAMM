@@ -28,8 +28,8 @@ export const routes: Routes = [
   },
   /*
   {
-    //path: 'user',
-    //loadComponent: () => import('./pages/user/user.page').then( m => m.UsuarioPropioPage)
+    path: 'user',
+    loadComponent: () => import('./pages/user/user.page').then( m => m.UsuarioPropioPage)
   },
   */
 ];

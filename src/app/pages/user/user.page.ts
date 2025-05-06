@@ -1,4 +1,4 @@
-  /*
+
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user-info.service';
 import { Router } from '@angular/router';
@@ -55,4 +55,3 @@ export class UsuarioPropioPage {
   }
     
 }
-  */
