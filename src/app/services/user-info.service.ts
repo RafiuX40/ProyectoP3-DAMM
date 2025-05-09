@@ -34,8 +34,8 @@ export class UserService {
     
     const currentData = await docData(tutorRef).toPromise();
 
-    const currentAverage = currentData?.averageRating || 0;
-    const currentCount = currentData?.ratingCount || 0;
+    const currentAverage = currentData?.['averageRating || 0'];
+    const currentCount = currentData?.['ratingCount || 0'];
 
     const newCount = currentCount + 1;
     const newAverage = ((currentAverage * currentCount) + rating) / newCount;
