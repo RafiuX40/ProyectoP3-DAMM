@@ -1,28 +1,53 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar Tutores</title>
-</head>
-<body>
-    <header>
-        <h1>Buscar Tutores</h1>
-    </header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buscar Tutores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <main>
+    <section id="search-section">
+      <input 
+        type="text" 
+        id="search-materia" 
+        placeholder="Buscar por materia"
+        [(ngModel)]="searchTermMateria"
+        (input)="applyFilters()"> 
+      
+      <input 
+        type="text" 
+        id="search-grado" 
+        placeholder="Buscar por grado"
+        [(ngModel)]="searchTermGrado"
+        (input)="applyFilters()">
+      
+      <button id="search-button" (click)="search()">Buscar</button>
+    </section>
     
-    <main>
-        <section id="search-section">
-            <input type="text" id="search-materia" placeholder="Buscar por materia">
-            <input type="text" id="search-grado" placeholder="Buscar por grado">
-            <button id="search-button">Buscar</button>
-        </section>
-        
-        <section id="tutors-list">
-            <!-- Aquí se mostrarán los tutores disponibles -->
-        </section>
-        <button (click)="logout()" class="">
-            Logout
-        </button>
-    </main>
-</body>
-</html>
+    <section id="tutors-list">
+      <div *ngIf="isLoading" style="text-align: center; padding: 20px;">
+        Cargando tutores...
+      </div>
+
+      <div *ngIf="!isLoading && filteredTutors.length === 0" style="text-align: center; padding: 20px;">
+        No se encontraron tutores con los criterios seleccionados.
+      </div>
+
+      <article *ngFor="let tutor of filteredTutors" class="tutor-entry">
+        <h3>{{ tutor.nombre }}</h3>
+        <p>
+          <strong>Grado:</strong> {{ tutor.grado }} <br>
+          <strong>Materias que Domina:</strong> {{ tutor.materiasQueDomino.join(', ') }} <br>
+          <strong>Disponibilidad:</strong> {{ tutor.disponibilidad.join(', ') }} <br>
+          <strong>Rating:</strong> {{ tutor.averageRating ? tutor.averageRating.toFixed(1) : 'N/A' }} ({{ tutor.ratingCount }} valoraciones)
+        </p>
+        <hr> 
+      </article>
+    </section>
+
+    <button (click)="logout()" class="logout-button">
+      Logout
+    </button>
+  </main>
+</ion-content>

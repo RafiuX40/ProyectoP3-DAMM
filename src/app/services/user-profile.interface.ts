@@ -1,5 +1,5 @@
   export interface UserProfile {
-    uid: string; // Document ID, also the Firebase Auth UID
+    uid: string;
     email: string;
     nombre: string;
     grado: string;
@@ -8,5 +8,4 @@
     disponibilidad: string[];
     averageRating: number;
     ratingCount: number;
-    // Add any other fields that make up a user's profile
   }
