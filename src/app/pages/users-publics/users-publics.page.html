@@ -1,13 +1,62 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>usersPublics</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ tutor?.nombre || 'Perfil del Tutor' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">usersPublics</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div *ngIf="isLoading" style="text-align: center; padding: 20px;">
+    Cargando perfil del tutor...
+  </div>
+
+  <div *ngIf="!isLoading && !tutor" style="text-align: center; padding: 20px;">
+    No se pudo cargar el perfil del tutor o el tutor no fue encontrado.
+  </div>
+
+  <div *ngIf="!isLoading && tutor">
+    <h2>{{ tutor.nombre }}</h2>
+    
+    <section style="margin-bottom: 20px;">
+      <h4>Información Básica</h4>
+      <p><strong>Email:</strong> {{ tutor.email }}</p>
+      <p><strong>Grado:</strong> {{ tutor.grado }}</p>
+    </section>
+
+    <section style="margin-bottom: 20px;">
+      <h4>Materias que Domina:</h4>
+      <ion-list *ngIf="tutor.materiasQueDomino && tutor.materiasQueDomino.length > 0; else noMateriasDomina">
+        <ion-item *ngFor="let materia of tutor.materiasQueDomino">
+          <ion-label>{{ materia }}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ng-template #noMateriasDomina><p>No especificadas.</p></ng-template>
+    </section>
+
+    <section style="margin-bottom: 20px;">
+      <h4>Materias que Necesita (como estudiante):</h4>
+      <ion-list *ngIf="tutor.materiasQueNecesito && tutor.materiasQueNecesito.length > 0; else noMateriasNecesita">
+        <ion-item *ngFor="let materia of tutor.materiasQueNecesito">
+          <ion-label>{{ materia }}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ng-template #noMateriasNecesita><p>No especificadas.</p></ng-template>
+    </section>
+
+    <section style="margin-bottom: 20px;">
+      <h4>Puntuación como Tutor:</h4>
+      <p>
+        <strong>Rating:</strong> {{ tutor.averageRating ? tutor.averageRating.toFixed(1) : 'N/A' }} 
+        (basado en {{ tutor.ratingCount }} valoraciones)
+      </p>
+    </section>
+    <button (click)="goRequest()" style="width: 150px">
+      Solicitar Tutoría
+    </button>
+    <button (click)="goHome()">
+      Volver
+    </button>
+  </div>
 </ion-content>

@@ -1,6 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
-
+import { Firestore, collection, addDoc, query, where, orderBy, doc, updateDoc, FieldValue, serverTimestamp  } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { collectionData } from '@angular/fire/firestore';
+import { TutoringRequest } from './tutoring-request.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,21 +10,29 @@ export class TutorService {
   private firestore = inject(Firestore);
 
   constructor() { }
-  async requestTutoring(data: {
-    tutorId: string;
-    studentId: string;
-    subject: string;
-    date: string;
-    time: string;
-    mode: 'presencial' | 'virtual';
-    location?: string;
-    notes?: string;
-  }): Promise<void> {
+  async requestTutoring(data: Omit<TutoringRequest, 'id' | 'createdAt' | 'status'>): Promise<void> {
     const tutoringRequestsRef = collection(this.firestore, 'tutoringRequests');
     await addDoc(tutoringRequestsRef, {
       ...data,
-      status: 'pendiente', 
-      createdAt: new Date()
+      status: 'pendiente',
+      createdAt: serverTimestamp()
     });
+  }
+
+  getRequestsAsTutor(userId: string): Observable<TutoringRequest[]> {
+    const requestsRef = collection(this.firestore, 'tutoringRequests');
+    const q = query(requestsRef, where('tutorId', '==', userId), orderBy('createdAt', 'desc'));
+    return collectionData(q, { idField: 'id' }) as Observable<TutoringRequest[]>;
+  }
+
+  getRequestsAsStudent(userId: string): Observable<TutoringRequest[]> {
+    const requestsRef = collection(this.firestore, 'tutoringRequests');
+    const q = query(requestsRef, where('studentId', '==', userId), orderBy('createdAt', 'desc'));
+    return collectionData(q, { idField: 'id' }) as Observable<TutoringRequest[]>;
+  }
+
+  async updateRequestStatus(requestId: string, status: TutoringRequest['status']): Promise<void> {
+    const requestRef = doc(this.firestore, `tutoringRequests/${requestId}`);
+    return updateDoc(requestRef, { status });
   }
 }

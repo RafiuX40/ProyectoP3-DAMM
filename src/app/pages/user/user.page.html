@@ -48,4 +48,71 @@
     </div>
   </ng-template>
 
+  <div *ngIf="user">
+    <ion-list-header style="margin-top: 20px;">
+      <ion-label><h2>Gestión de Tutorías</h2></ion-label>
+    </ion-list-header>
+
+    <div *ngIf="requestsLoading" style="text-align: center; padding: 10px;">
+      <p>Cargando solicitudes...</p>
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <div *ngIf="!requestsLoading">
+      <section id="received-requests" style="margin-bottom: 20px;">
+        <h3>Solicitudes Recibidas (Como Tutor)</h3>
+        <div *ngIf="receivedRequests.length === 0 && !requestsLoading" class="empty-state">
+          <p>No tienes solicitudes de tutoría recibidas.</p>
+        </div>
+        <ion-list *ngIf="receivedRequests.length > 0">
+          <ion-item *ngFor="let req of receivedRequests" lines="full">
+            <ion-label>
+              <p><strong>De:</strong> {{ req.studentName || 'Estudiante Desconocido' }}</p>
+              <p><strong>Materia:</strong> {{ req.subject }}</p>
+              <p><strong>Fecha:</strong> {{ req.date | date:'dd/MM/yyyy' }} - {{ req.time }}</p>
+              <p><strong>Modo:</strong> {{ req.mode | titlecase }} 
+                 <span *ngIf="req.mode === 'presencial' && req.location"> ({{ req.location }})</span></p>
+              <p *ngIf="req.notes"><strong>Notas:</strong> {{ req.notes }}</p>
+              <p><strong>Estado:</strong> 
+                <ion-text [color]="getStatusColor(req.status)">{{ req.status | titlecase }}</ion-text>
+              </p>
+            </ion-label>
+            <div slot="end" *ngIf="req.status === 'pendiente'" style="display: flex; flex-direction: column; gap: 5px;">
+              <ion-button (click)="acceptRequest(req.id)" color="success" size="small" fill="outline">Aceptar</ion-button>
+              <ion-button (click)="denyRequest(req.id)" color="danger" size="small" fill="outline">Rechazar</ion-button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </section>
+
+      <section id="sent-requests">
+        <h3>Mis Solicitudes Enviadas (Como Estudiante)</h3>
+        <div *ngIf="sentRequests.length === 0 && !requestsLoading" class="empty-state">
+          <p>No has enviado ninguna solicitud de tutoría.</p>
+        </div>
+        <ion-list *ngIf="sentRequests.length > 0">
+          <ion-item *ngFor="let req of sentRequests" lines="full">
+            <ion-label>
+              <p><strong>Para:</strong> {{ req.tutorName || 'Tutor Desconocido' }}</p>
+              <p><strong>Materia:</strong> {{ req.subject }}</p>
+              <p><strong>Fecha:</strong> {{ req.date | date:'dd/MM/yyyy' }} - {{ req.time }}</p>
+              <p><strong>Modo:</strong> {{ req.mode | titlecase }}
+                 <span *ngIf="req.mode === 'presencial' && req.location"> ({{ req.location }})</span></p>
+              <p *ngIf="req.notes"><strong>Notas:</strong> {{ req.notes }}</p>
+              <p><strong>Estado:</strong> 
+                <ion-text [color]="getStatusColor(req.status)">{{ req.status | titlecase }}</ion-text>
+              </p>
+            </ion-label>
+            <div slot="end" *ngIf="req.status === 'pendiente'">
+              <ion-button (click)="cancelOwnRequest(req.id)" color="warning" size="small" fill="outline">Cancelar</ion-button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </section>
+    </div>
+  </div>
+
+  <button (click)="goHome()" class="ala">
+    Volver
+  </button>
 </ion-content>

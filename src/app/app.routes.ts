@@ -23,7 +23,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/reset-password/reset-password.page').then( m => m.ResetPasswordPage)
   },
   {
-    path: 'users-publics',
+    path: 'users-publics/:id',
     loadComponent: () => import('./pages/users-publics/users-publics.page').then( m => m.UsersPublicsPage)
   },
   
@@ -31,4 +31,9 @@ export const routes: Routes = [
     path: 'user',
     loadComponent: () => import('./pages/user/user.page').then( m => m.UsuarioPropioPage)
   },
+  {
+    path: 'request/:tutorId',
+    loadComponent: () => import('./pages/request/request.page').then( m => m.RequestPage)
+  },
+
 ];

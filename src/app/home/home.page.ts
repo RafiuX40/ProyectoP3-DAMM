@@ -94,6 +94,14 @@ export class HomePage implements OnInit, OnDestroy {
     })
   }
 
+  goPerfil() {
+      this.router.navigateByUrl('/user');
+  }
+
+  viewTutorProfile(tutorId: string) {
+    this.router.navigate(['/users-publics', tutorId]);
+  }
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

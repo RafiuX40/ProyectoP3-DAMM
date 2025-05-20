@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="tutorId ? '/users-publics/' + tutorId : '/home'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Solicitar Tutoría a {{ tutor?.nombre || 'Tutor' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="isLoading" style="text-align: center; padding: 20px;">
+    Cargando...
+  </div>
+
+  <form [formGroup]="requestForm" (ngSubmit)="submitRequest()" *ngIf="!isLoading && tutor && currentUser">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Materia que necesitas</ion-label>
+        <ion-input formControlName="subject" type="text"></ion-input>
+      </ion-item>
+      <div *ngIf="requestForm.get('subject')?.invalid && requestForm.get('subject')?.touched" style="color: red; font-size: 0.8em; padding-left: 16px;">
+        La materia es requerida.
+      </div>
+
+      <!-- Date Picker -->
+      <ion-item>
+        <ion-label position="stacked">Fecha</ion-label>
+        <ion-datetime-button datetime="datePicker"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datePicker"
+              presentation="date"
+              formControlName="date"
+              (ionChange)="onDateChange($event)"
+              [min]="minDateValue"
+              [showDefaultTitle]="true"
+              doneText="Hecho"
+              cancelText="Cancelar"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+      <div *ngIf="requestForm.get('date')?.invalid && requestForm.get('date')?.touched" style="color: red; font-size: 0.8em; padding-left: 16px;">
+        La fecha es requerida.
+      </div>
+      <ion-item lines="none" *ngIf="requestForm.get('date')?.value">
+        <ion-label>Fecha seleccionada: {{ requestForm.get('date')?.value | date:'fullDate' }}</ion-label>
+      </ion-item>
+
+      <!-- Time Picker -->
+      <ion-item>
+        <ion-label position="stacked">Hora</ion-label>
+        <ion-datetime-button datetime="timePicker"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="timePicker"
+              presentation="time"
+              formControlName="time"
+              (ionChange)="onTimeChange($event)"
+              [showDefaultTitle]="true"
+              doneText="Hecho"
+              cancelText="Cancelar"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+      <div *ngIf="requestForm.get('time')?.invalid && requestForm.get('time')?.touched" style="color: red; font-size: 0.8em; padding-left: 16px;">
+        La hora es requerida.
+      </div>
+      <ion-item lines="none" *ngIf="requestForm.get('time')?.value">
+        <ion-label>Hora seleccionada: {{ requestForm.get('time')?.value }}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Modo</ion-label>
+        <ion-select formControlName="mode" interface="popover">
+          <ion-select-option value="virtual">Virtual</ion-select-option>
+          <ion-select-option value="presencial">Presencial</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="requestForm.get('mode')?.value === 'presencial'">
+        <ion-label position="floating">Lugar/Dirección (si es presencial)</ion-label>
+        <ion-input formControlName="location" type="text"></ion-input>
+      </ion-item>
+      <div *ngIf="requestForm.get('location')?.invalid && requestForm.get('location')?.touched && requestForm.get('mode')?.value === 'presencial'" style="color: red; font-size: 0.8em; padding-left: 16px;">
+        La ubicación es requerida para tutorías presenciales.
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Notas adicionales (opcional)</ion-label>
+        <ion-textarea formControlName="notes" rows="3"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button type="submit" expand="block" [disabled]="requestForm.invalid || isLoading" style="margin-top: 20px;">
+      <span *ngIf="!isLoading">Enviar Solicitud</span>
+      <span *ngIf="isLoading">Enviando...</span> <!-- Small typo here, should be *ngIf -->
+    </ion-button>
+  </form>
+
+  <div *ngIf="!isLoading && (!tutor || !currentUser)" style="text-align: center; padding: 20px;">
+    No se pudo cargar la información necesaria para crear una solicitud.
+  </div>
+</ion-content>
