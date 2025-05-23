@@ -1,17 +1,267 @@
-button{
-    font-size: medium;
-    border: 4px solid black;
-    border-radius: 4px;
-    padding: 4px;
-    background-color: skyblue;
+// Login Page Styles - Updated to match design
+ion-content {
+  --background: #b8c6db;
+  --color: #2c3e50;
+  padding: 2rem 1rem;
+  
+  // Welcome section styling
+  div {
+    text-align: center;
+    padding: 1rem 0 2rem 0;
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    p {
+      font-size: 0.95rem;
+      margin: 0;
+      color: #34495e;
+      opacity: 0.8;
+    }
+  }
+
+  // Main card container
+  form {
+    background: #9bb5db;
+    border-radius: 1.5rem;
+    padding: 2rem 1.5rem;
+    margin: 0 auto;
+    max-width: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    // Card header
+    &::before {
+      content: "INICIAR SESIÓN";
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    // Form group styling
+    .mb-6 {
+      margin-bottom: 1rem;
+
+      label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        text-align: left;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-size: 0.9rem;
+        background-color: #e8f0f7;
+        color: #2c3e50;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          background-color: #ffffff;
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 
+                      0 0 0 2px rgba(52, 73, 94, 0.2);
+        }
+
+        &::placeholder {
+          color: #7f8c8d;
+          font-size: 0.85rem;
+        }
+
+        &.ng-invalid.ng-touched {
+          background-color: #ffeaa7;
+          box-shadow: inset 0 2px 4px rgba(230, 126, 34, 0.2);
+        }
+      }
+
+      // Error message styling
+      div[style*="color: red"] {
+        color: #e74c3c !important;
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+
+    // Forgot password link
+    .forgot-link {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 0.8rem;
+      color: #2c3e50;
+      text-decoration: underline;
+      cursor: pointer;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    // Primary submit button
+    button[type="submit"] {
+      width: 100%;
+      background: #34495e;
+      color: #ffffff;
+      border: none;
+      padding: 0.875rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1rem;
+
+      &:hover:not(:disabled) {
+        background: #2c3e50;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(52, 73, 94, 0.3);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        background: #7f8c8d;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+  }
+  
+
+  // Secondary buttons container
+  > button {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    margin: 1rem auto;
+    padding: 0.875rem 1.5rem;
+    background: #7d92b8;
+    border: none;
+    border-radius: 0.75rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    &:hover {
+      background: #6c7fa3;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(125, 146, 184, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    // First button (reset) - "¿Nuevo? por aquí"
+    &:first-of-type::before {
+      
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+      opacity: 0.9;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    // Reset button text
+    &:first-of-type {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
 }
 
-html {
-    text-align: center;
-  
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+// Header styling
+ion-header {
+  ion-toolbar {
+    --background: #9bb5db;
+    --color: #2c3e50;
+
+    ion-title {
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.1rem;
+    }
   }
+}
+
+// Responsive design adjustments
+@media (min-width: 768px) {
+  ion-content {
+    padding: 3rem 2rem;
+    
+    form {
+      max-width: 400px;
+    }
+
+    > button {
+      max-width: 400px;
+    }
+  }
+}
+
+// Remove gradient background from original
+ion-content {
+  background: #b8c6db !important;
+}
+
+// Focus states for accessibility
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #34495e;
+  outline-offset: 2px;
+}
+
+// Loading state
+.loading {
+  pointer-events: none;
+  opacity: 0.7;
+
+  button {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
