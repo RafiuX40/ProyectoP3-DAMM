@@ -3,13 +3,12 @@ import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-// Ensure ALL used Ionic components are imported here
 import { 
   IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, 
   IonList, IonItem, IonLabel, IonInput, 
-  IonListHeader, // <<< ENSURE THIS IS PRESENT
-  IonText,       // <<< ENSURE THIS IS PRESENT
-  IonSpinner     // <<< ENSURE THIS IS PRESENT
+  IonListHeader, 
+  IonText,       
+  IonSpinner     
 } from '@ionic/angular/standalone'; 
 
 import { UserService } from '../../services/user-info.service';
@@ -24,7 +23,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: 'user.page.html',
   styleUrls: ['user.page.scss'],
   standalone: true, 
-  imports: [ // <<< THIS ARRAY IS CRITICAL
+  imports: [ 
     CommonModule, 
     FormsModule, 
     IonHeader, 
@@ -37,11 +36,11 @@ import { takeUntil } from 'rxjs/operators';
     IonItem, 
     IonLabel,
     IonInput, 
-    IonListHeader, // <<< ENSURE THIS IS PRESENT
-    IonText,       // <<< ENSURE THIS IS PRESENT
-    IonSpinner,    // <<< ENSURE THIS IS PRESENT
-    DatePipe,      // For {{ someDate | date }}
-    TitleCasePipe  // For {{ someString | titlecase }}
+    IonListHeader, 
+    IonText,       
+    IonSpinner,   
+    DatePipe,      
+    TitleCasePipe 
   ],
 })
 export class UsuarioPropioPage implements OnInit {
@@ -154,7 +153,6 @@ export class UsuarioPropioPage implements OnInit {
     try {
       await this.tutorService.updateRequestStatus(requestId, 'aceptada');
       this.showAlert('Éxito', 'Solicitud aceptada.');
-      // Real-time updates from Firestore will refresh the list
     } catch (error) {
       this.showAlert('Error', 'No se pudo aceptar la solicitud.');
     }

@@ -7,7 +7,6 @@ ion-content {
     max-width: 900px;
     margin: 0 auto;
 
-    // Main profile form container
     ion-list {
       background: #ffffff;
       border-radius: 1rem;
@@ -67,7 +66,6 @@ ion-content {
     }
   }
 
-  // Loading state
   ng-template div,
   div[style*="text-align: center"] {
     background: #ffffff;
@@ -86,7 +84,6 @@ ion-content {
     }
   }
 
-  // Tutorial management sections
   ion-list-header {
     background: #ffffff;
     border-radius: 1rem 1rem 0 0;
@@ -105,7 +102,6 @@ ion-content {
     }
   }
 
-  // Sections for requests
   section {
     background: #ffffff;
     border-radius: 1rem;
@@ -129,7 +125,6 @@ ion-content {
       border-bottom: 2px solid #e9ecef;
     }
 
-    // Empty state
     .empty-state {
       background: #f8f9fa;
       border: 1px solid #e9ecef;
@@ -145,7 +140,6 @@ ion-content {
       }
     }
 
-    // Request items
     ion-list {
       background: transparent;
       margin: 0;
@@ -194,7 +188,6 @@ ion-content {
               margin-bottom: 0;
             }
 
-            // Status text styling
             ion-text {
               font-weight: 600;
               text-transform: uppercase;
@@ -204,7 +197,6 @@ ion-content {
           }
         }
 
-        // Action buttons container
         div[slot="end"] {
           display: flex;
           flex-direction: column;
@@ -266,7 +258,6 @@ ion-content {
     }
   }
 
-  // Bottom navigation button
   button.ala {
     display: block;
     width: 100%;
@@ -298,7 +289,6 @@ ion-content {
   }
 }
 
-// Header styling
 ion-header {
   ion-toolbar {
     --background: #9bb5db;
@@ -327,7 +317,6 @@ ion-header {
   }
 }
 
-// Status color helper classes
 ion-text {
   &[color="success"] {
     --color: #28a745;
@@ -350,7 +339,6 @@ ion-text {
   }
 }
 
-// Responsive design
 @media (min-width: 768px) {
   ion-content {
     padding: 3rem 2rem;
@@ -428,12 +416,10 @@ ion-text {
   }
 }
 
-// Global background override
 ion-content {
   background: #b8c6db !important;
 }
 
-// Focus states
 ion-item:focus-visible,
 ion-button:focus-visible,
 button:focus-visible {
@@ -441,7 +427,6 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-// Loading animation
 .loading {
   pointer-events: none;
   opacity: 0.7;

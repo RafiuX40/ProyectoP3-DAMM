@@ -7,7 +7,6 @@ ion-content {
     max-width: 800px;
     margin: 0 auto;
 
-    // Loading and error states
     > div {
       text-align: center;
       padding: 2rem;
@@ -19,14 +18,12 @@ ion-content {
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
-    // Main tutor profile content
     &:last-child {
       background: #ffffff;
       border-radius: 1rem;
       padding: 2rem;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-      // Tutor name (main title)
       h2 {
         font-size: 1.3rem;
         font-weight: 700;
@@ -37,7 +34,6 @@ ion-content {
         border-bottom: 2px solid #e9ecef;
       }
 
-      // Section containers
       section {
         background: #f8f9fa;
         border: 1px solid #e9ecef;
@@ -51,7 +47,6 @@ ion-content {
           border-color: #dee2e6;
         }
 
-        // Section headers
         h4 {
           font-size: 0.95rem;
           font-weight: 600;
@@ -63,7 +58,6 @@ ion-content {
           border-bottom: 1px solid #dee2e6;
         }
 
-        // Paragraphs within sections
         p {
           font-size: 0.8rem;
           color: #6c757d;
@@ -80,7 +74,6 @@ ion-content {
           }
         }
 
-        // Ion-list styling
         ion-list {
           background: transparent;
           margin: 0;
@@ -114,7 +107,6 @@ ion-content {
           }
         }
 
-        // Special styling for rating section
         &:last-of-type {
           background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
           border-color: #dee2e6;
@@ -203,7 +195,6 @@ ion-header {
   }
 }
 
-// Responsive design
 @media (min-width: 768px) {
   ion-content {
     padding: 3rem 2rem;
@@ -255,19 +246,16 @@ ion-header {
   }
 }
 
-// Global background
 ion-content {
   background: #b8c6db !important;
 }
 
-// Focus states
 button:focus-visible,
 ion-item:focus-visible {
   outline: 2px solid #34495e;
   outline-offset: 2px;
 }
 
-// Loading animation
 .loading {
   pointer-events: none;
   opacity: 0.7;
@@ -290,7 +278,6 @@ ion-item:focus-visible {
   100% { transform: rotate(360deg); }
 }
 
-// Special styling for "no data" templates
 ng-template {
   p {
     font-style: italic;
