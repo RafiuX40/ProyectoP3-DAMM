@@ -1,17 +1,304 @@
-html {
-  text-align: center;
+ion-content {
+  --background: #b8c6db;
+  --color: #2c3e50;
+  padding: 2rem 1rem;
 
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 50%;
-  transform: translateY(-50%);
+  > div {
+    max-width: 800px;
+    margin: 0 auto;
+
+    // Loading and error states
+    > div {
+      text-align: center;
+      padding: 2rem;
+      color: #6c757d;
+      font-size: 0.9rem;
+      font-weight: 400;
+      background: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    // Main tutor profile content
+    &:last-child {
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      // Tutor name (main title)
+      h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0 0 1.5rem 0;
+        text-align: left;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #e9ecef;
+      }
+
+      // Section containers
+      section {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: #f1f3f4;
+          border-color: #dee2e6;
+        }
+
+        // Section headers
+        h4 {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #495057;
+          margin: 0 0 0.75rem 0;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          padding-bottom: 0.4rem;
+          border-bottom: 1px solid #dee2e6;
+        }
+
+        // Paragraphs within sections
+        p {
+          font-size: 0.8rem;
+          color: #6c757d;
+          margin: 0.4rem 0;
+          line-height: 1.4;
+
+          strong {
+            color: #495057;
+            font-weight: 600;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        // Ion-list styling
+        ion-list {
+          background: transparent;
+          margin: 0;
+          padding: 0;
+
+          ion-item {
+            --background: #ffffff;
+            --border-color: #e9ecef;
+            --color: #2c3e50;
+            --padding-start: 1rem;
+            --padding-end: 1rem;
+            --inner-border-width: 0 0 1px 0;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+
+            &:hover {
+              --background: #f8f9fa;
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+              --inner-border-width: 0;
+            }
+
+            ion-label {
+              color: #2c3e50;
+              font-weight: 500;
+            }
+          }
+        }
+
+        // Special styling for rating section
+        &:last-of-type {
+          background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+          border-color: #dee2e6;
+
+          p {
+            font-size: 0.85rem;
+            color: #495057;
+            text-align: left;
+            margin: 0;
+
+            strong {
+              font-size: 0.9rem;
+              color: #2c3e50;
+            }
+          }
+        }
+      }
+
+      // Buttons styling
+      button {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 1rem auto;
+        padding: 0.875rem 1.5rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        &:first-of-type {
+          background: #7d92b8;
+          color: #ffffff;
+
+          &:hover {
+            background: #6c7fa3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(125, 146, 184, 0.3);
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+
+        &:last-of-type {
+          background: transparent;
+          color: #6c7fa3;
+          border: 2px solid #6c7fa3;
+
+          &:hover {
+            background: #6c7fa3;
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(108, 127, 163, 0.2);
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
 }
 
-button{
-  font-size: medium;
-  border: 1px solid black;
-  border-radius: 4px;
-  padding: 4px;
-  background-color: skyblue;
+ion-header {
+  ion-toolbar {
+    --background: #9bb5db;
+    --color: #2c3e50;
+
+    ion-title {
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    ion-back-button {
+      --color: #2c3e50;
+      font-weight: 600;
+    }
+  }
+}
+
+// Responsive design
+@media (min-width: 768px) {
+  ion-content {
+    padding: 3rem 2rem;
+
+    > div:last-child {
+      padding: 2.5rem;
+
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      section {
+        padding: 2rem;
+        margin-bottom: 2rem;
+
+        h4 {
+          font-size: 1rem;
+        }
+
+        p {
+          font-size: 0.85rem;
+        }
+
+        ion-item {
+          font-size: 0.85rem;
+          --padding-start: 1.5rem;
+          --padding-end: 1.5rem;
+        }
+      }
+
+      button {
+        display: inline-block;
+        width: auto;
+        min-width: 200px;
+        margin: 1rem 0.5rem;
+
+        &:first-of-type {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  ion-content > div {
+    max-width: 1000px;
+  }
+}
+
+// Global background
+ion-content {
+  background: #b8c6db !important;
+}
+
+// Focus states
+button:focus-visible,
+ion-item:focus-visible {
+  outline: 2px solid #34495e;
+  outline-offset: 2px;
+}
+
+// Loading animation
+.loading {
+  pointer-events: none;
+  opacity: 0.7;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid transparent;
+    border-top: 2px solid #6c757d;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 0.5rem;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Special styling for "no data" templates
+ng-template {
+  p {
+    font-style: italic;
+    color: #868e96 !important;
+    text-align: center;
+    padding: 1rem;
+    background: #f1f3f5;
+    border-radius: 0.5rem;
+    margin: 0;
+  }
 }

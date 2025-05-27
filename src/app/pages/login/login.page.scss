@@ -1,10 +1,8 @@
-// Login Page Styles - Updated to match design
 ion-content {
   --background: #b8c6db;
   --color: #2c3e50;
   padding: 2rem 1rem;
   
-  // Welcome section styling
   div {
     text-align: center;
     padding: 1rem 0 2rem 0;
@@ -24,7 +22,6 @@ ion-content {
     }
   }
 
-  // Main card container
   form {
     background: #9bb5db;
     border-radius: 1.5rem;
@@ -33,7 +30,6 @@ ion-content {
     max-width: 350px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
-    // Card header
     &::before {
       content: "INICIAR SESIÓN";
       display: block;
@@ -46,7 +42,6 @@ ion-content {
       letter-spacing: 1px;
     }
 
-    // Form group styling
     .mb-6 {
       margin-bottom: 1rem;
 
@@ -88,7 +83,6 @@ ion-content {
         }
       }
 
-      // Error message styling
       div[style*="color: red"] {
         color: #e74c3c !important;
         font-size: 0.75rem;
@@ -98,7 +92,6 @@ ion-content {
       }
     }
 
-    // Forgot password link
     .forgot-link {
       text-align: center;
       margin: 1rem 0;
@@ -113,7 +106,6 @@ ion-content {
       }
     }
 
-    // Primary submit button
     button[type="submit"] {
       width: 100%;
       background: #34495e;
@@ -148,7 +140,6 @@ ion-content {
   }
   
 
-  // Secondary buttons container
   > button {
     display: block;
     width: 100%;
@@ -176,7 +167,6 @@ ion-content {
       transform: translateY(0);
     }
 
-    // First button (reset) - "¿Nuevo? por aquí"
     &:first-of-type::before {
       
       display: block;
@@ -188,7 +178,6 @@ ion-content {
       letter-spacing: 0;
     }
 
-    // Reset button text
     &:first-of-type {
       padding-top: 1rem;
       padding-bottom: 1rem;
@@ -196,7 +185,6 @@ ion-content {
   }
 }
 
-// Header styling
 ion-header {
   ion-toolbar {
     --background: #9bb5db;
@@ -210,7 +198,6 @@ ion-header {
   }
 }
 
-// Responsive design adjustments
 @media (min-width: 768px) {
   ion-content {
     padding: 3rem 2rem;
@@ -225,19 +212,16 @@ ion-header {
   }
 }
 
-// Remove gradient background from original
 ion-content {
   background: #b8c6db !important;
 }
 
-// Focus states for accessibility
 button:focus-visible,
 input:focus-visible {
   outline: 2px solid #34495e;
   outline-offset: 2px;
 }
 
-// Loading state
 .loading {
   pointer-events: none;
   opacity: 0.7;
