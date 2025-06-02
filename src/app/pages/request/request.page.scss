@@ -12,7 +12,6 @@ ion-content {
     margin: 0 auto;
     width: 100%;
 
-    // Loading state
     > div {
       text-align: center;
       padding: 2rem;
@@ -25,7 +24,6 @@ ion-content {
     }
   }
 
-  // Main form container
   form {
     background: #ffffff;
     border-radius: 1rem;
@@ -34,13 +32,11 @@ ion-content {
     margin: 0 auto;
     width: 100%;
 
-    // Ion-list styling
     ion-list {
       background: transparent;
       margin: 0;
       padding: 0;
 
-      // Form items
       ion-item {
         --background: #f8f9fa;
         --border-color: #e9ecef;
@@ -63,7 +59,6 @@ ion-content {
           --inner-border-width: 0;
         }
 
-        // Labels
         ion-label {
           color: #495057;
           font-weight: 600;
@@ -84,26 +79,22 @@ ion-content {
           }
         }
 
-        // Input elements
         ion-input,
         ion-textarea {
           --color: #2c3e50;
           font-size: 0.85rem;
         }
 
-        // Select elements
         ion-select {
           --color: #2c3e50;
           font-size: 0.85rem;
         }
 
-        // DateTime button
         ion-datetime-button {
           --color: #2c3e50;
           font-size: 0.85rem;
         }
 
-        // Special styling for info items (no input)
         &[lines="none"] {
           --background: #e9ecef;
           border-color: #dee2e6;
@@ -117,7 +108,6 @@ ion-content {
       }
     }
 
-    // Error messages
     div[style*="color: red"] {
       color: #dc3545 !important;
       font-size: 0.75rem !important;
@@ -130,7 +120,6 @@ ion-content {
       border-radius: 0.5rem;
     }
 
-    // Submit button
     ion-button[type="submit"] {
       --background: #7d92b8;
       --color: #ffffff;
@@ -165,7 +154,6 @@ ion-content {
     }
   }
 
-  // Error/no data container
   > div:last-child:not(form) {
     background: #ffffff;
     border-radius: 1rem;
@@ -181,7 +169,6 @@ ion-content {
   }
 }
 
-// Header styling
 ion-header {
   ion-toolbar {
     --background: #9bb5db;
@@ -200,7 +187,6 @@ ion-header {
   }
 }
 
-// Modal styling for datetime pickers
 ion-modal {
   ion-datetime {
     --background: #ffffff;
@@ -208,7 +194,6 @@ ion-modal {
   }
 }
 
-// Responsive design
 @media (min-width: 768px) {
   ion-content {
     padding: 3rem 2rem;
@@ -258,19 +243,16 @@ ion-modal {
   }
 }
 
-// Global background override
 ion-content {
   background: #b8c6db !important;
 }
 
-// Focus states
 ion-item:focus-visible,
 ion-button:focus-visible {
   outline: 2px solid #34495e;
   outline-offset: 2px;
 }
 
-// Loading animation for submit button
 ion-button[type="submit"] {
   span {
     display: inline-flex;
@@ -278,7 +260,6 @@ ion-button[type="submit"] {
   }
 }
 
-// Enhanced accessibility
 ion-item {
   &:focus-within {
     --background: #f1f3f4;
@@ -287,7 +268,6 @@ ion-item {
   }
 }
 
-// Special styling for select popover
 ion-select {
   &.select-expanded {
     ion-select-option {

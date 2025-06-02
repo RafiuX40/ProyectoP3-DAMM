@@ -47,7 +47,6 @@ export class UsersPublicsPage implements OnInit, OnDestroy {
         if (this.tutorId) {
           return this.userService.getUserProfile(this.tutorId);
         }
-        // Return an observable of null if no ID is found, or handle error appropriately
         return Promise.resolve(null); 
       })
     ).subscribe({
@@ -56,14 +55,12 @@ export class UsersPublicsPage implements OnInit, OnDestroy {
           this.tutor = profile;
         } else {
           console.warn(`Tutor with ID ${this.tutorId} not found.`);
-          // Optionally navigate back or show a more prominent error message in the UI
         }
         this.isLoading = false;
       },
       error: (err) => {
         console.error("Error loading tutor profile:", err);
         this.isLoading = false;
-        // Optionally show an error message in the UI
       }
     });
   }

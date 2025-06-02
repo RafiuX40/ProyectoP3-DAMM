@@ -1,4 +1,3 @@
-// src/app/pages/request/request.page.ts (or your actual path)
 import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,15 +7,15 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton,
 import { Subject, forkJoin, of } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
-import { TutorService } from '../../services/tutor.service'; // Adjust path if necessary
-import { UserService } from '../../services/user-info.service'; // Adjust path if necessary
-import { UserProfile } from '../../services/user-profile.interface'; // Adjust path if necessary
-import { TutoringRequest } from '../../services/tutoring-request.interface'; // Adjust path if necessary
+import { TutorService } from '../../services/tutor.service'; 
+import { UserService } from '../../services/user-info.service'; 
+import { UserProfile } from '../../services/user-profile.interface'; 
+import { TutoringRequest } from '../../services/tutoring-request.interface'; 
 
 @Component({
   selector: 'app-request',
   templateUrl: './request.page.html',
-  styleUrls: ['./request.page.scss'], // Make sure this path is correct or remove if no specific styles
+  styleUrls: ['./request.page.scss'], 
   standalone: true,
   imports: [
     CommonModule,
@@ -51,8 +50,8 @@ export class RequestPage implements OnInit, OnDestroy {
 
     this.requestForm = this.fb.group({
       subject: ['', Validators.required],
-      date: [this.formatDateToYYYYMMDD(now), Validators.required], // Stores as YYYY-MM-DD
-      time: [now.toISOString(), Validators.required], // Stores as full ISO string for ion-datetime
+      date: [this.formatDateToYYYYMMDD(now), Validators.required], 
+      time: [now.toISOString(), Validators.required], 
       mode: ['virtual', Validators.required],
       location: [''],
       notes: [''],
@@ -108,12 +107,10 @@ export class RequestPage implements OnInit, OnDestroy {
     });
   }
 
-  // Renamed for clarity, used for <ion-datetime presentation="date">
   public formatDateToYYYYMMDD(date: Date): string {
     return date.toISOString().split('T')[0];
   }
   
-  // Used to extract HH:mm for Firestore if needed from a full Date object or ISO string
   private formatTimeToHHMM(dateInput: Date | string): string {
     const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
     const hours = date.getHours().toString().padStart(2, '0');
@@ -122,17 +119,15 @@ export class RequestPage implements OnInit, OnDestroy {
   }
 
   onDateChange(event: any) {
-    const isoDateString = event.detail.value; // This is a full ISO string from ion-datetime
+    const isoDateString = event.detail.value; 
     if (isoDateString) {
-      // We only need the YYYY-MM-DD part for the 'date' form control
       this.requestForm.patchValue({ date: this.formatDateToYYYYMMDD(new Date(isoDateString)) });
     }
   }
 
   onTimeChange(event: any) {
-    const isoTimeString = event.detail.value; // This is a full ISO string from ion-datetime
+    const isoTimeString = event.detail.value; 
     if (isoTimeString) {
-      // Store the full ISO string in the form control, ion-datetime presentation="time" will use it
       this.requestForm.patchValue({ time: isoTimeString });
     }
   }
@@ -146,7 +141,6 @@ export class RequestPage implements OnInit, OnDestroy {
     this.isLoading = true;
     const formValue = this.requestForm.value;
 
-    // Extract HH:mm from the ISO string stored in formValue.time
     const timeToSave = formValue.time ? this.formatTimeToHHMM(formValue.time) : this.formatTimeToHHMM(new Date());
 
     const requestDataObj: Omit<TutoringRequest, 'id' | 'createdAt' | 'status'> & { location?: string } = {
@@ -155,18 +149,15 @@ export class RequestPage implements OnInit, OnDestroy {
       tutorName: this.tutor.nombre,
       studentName: this.currentUser.nombre,
       subject: formValue.subject,
-      date: formValue.date,         // This is YYYY-MM-DD
-      time: timeToSave,             // This is now HH:mm
+      date: formValue.date,         
+      time: timeToSave,             
       mode: formValue.mode,
       notes: formValue.notes || '', 
     };
 
-    // Conditionally add location
     if (formValue.mode === 'presencial' && formValue.location && formValue.location.trim() !== '') {
       requestDataObj.location = formValue.location;
     }
-
-    console.log('Submitting requestData:', requestDataObj); // For debugging
 
     try {
       await this.tutorService.requestTutoring(requestDataObj as Omit<TutoringRequest, 'id' | 'createdAt' | 'status'>);

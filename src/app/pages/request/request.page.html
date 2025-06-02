@@ -22,7 +22,6 @@
         La materia es requerida.
       </div>
 
-      <!-- Date Picker -->
       <ion-item>
         <ion-label position="stacked">Fecha</ion-label>
         <ion-datetime-button datetime="datePicker"></ion-datetime-button>
@@ -48,7 +47,6 @@
         <ion-label>Fecha seleccionada: {{ requestForm.get('date')?.value | date:'fullDate' }}</ion-label>
       </ion-item>
 
-      <!-- Time Picker -->
       <ion-item>
         <ion-label position="stacked">Hora</ion-label>
         <ion-datetime-button datetime="timePicker"></ion-datetime-button>
@@ -97,7 +95,7 @@
 
     <ion-button type="submit" expand="block" [disabled]="requestForm.invalid || isLoading" style="margin-top: 20px;">
       <span *ngIf="!isLoading">Enviar Solicitud</span>
-      <span *ngIf="isLoading">Enviando...</span> <!-- Small typo here, should be *ngIf -->
+      <span *ngIf="isLoading">Enviando...</span> 
     </ion-button>
   </form>
 
